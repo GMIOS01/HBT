@@ -1,26 +1,63 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
-void inhoanvi(int n) {
-    vector<int> a(n);
-    for (int i = 0; i < n; ++i) {
-        a[i] = n - i;
+vector <int> x ;
+vector <int> hv ;
+int n;
+void show() {
+    for (int i = 1; i <= n; i++)
+    {
+        cout << hv[i] << " ";
     }
-
-    do {
-        for (int i = 0; i < n; ++i) {
-            cout << a[i] << " ";
+    cout << "\n";
+}
+int fNext() {
+    int pos = -1;
+    for ( int i = n; i >= 2; i--)
+    {
+        if (hv[i - 1] > hv[i])
+        {
+            pos = i - 1;
+            break;
         }
-        cout << endl;
-    } while (prev_permutation(a.begin(), a.end()));
+    }
+    return pos;
 }
-
+void Next() {
+    show();
+    while (1)
+    {
+        int pos = fNext();
+        if (pos == -1)
+        {
+            return;
+        }
+        else{
+            sort(hv.begin() + pos+1, hv.end(), greater());
+            int posMax = -1;
+            for (int i = pos+1; i <= n; i++)
+            {
+                if (hv[pos] > hv[i])
+                {
+                    posMax = i;
+                    break;
+                }
+            }
+            int tmp = hv[pos];
+            hv[pos] = hv[posMax];
+            hv[posMax] = tmp;
+            show();
+        }
+    }
+}
 int main() {
-    int n;
     cin >> n;
-    inhoanvi(n);
-
-    return 0;
+    hv.resize(n + 1);
+    int tmp = n;
+    for (int i = 1; i <= n; i++)
+    {
+        hv[i] = tmp;
+        tmp--;
+    }
+    Next();
 }
+

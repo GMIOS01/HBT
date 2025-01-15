@@ -1,22 +1,24 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
-string is_square_number(int a) {
-    if (a < 0)
-        return "NO";
-    int sqrt_a = static_cast<int>(sqrt(a));
-    if (sqrt_a * sqrt_a == a)
-        return "YES";
-    else
-        return "NO";
+bool isPerfectSquare(double n) {
+    if (n < 0) return false; 
+    double root = static_cast <double> (sqrt(n)); 
+    return (root * root == n); 
 }
 
 int main() {
-    int a;
+    double a;
     cin >> a;
-    cout << is_square_number(a) << endl;
+
+    if (isPerfectSquare(a)) {
+        cout << "YES" ;
+    } else {
+        cout << "NO" ;
+    }
+
     return 0;
 }
-

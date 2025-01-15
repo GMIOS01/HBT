@@ -1,11 +1,20 @@
 #include <iostream>
+#include <algorithm>
+
 using namespace std;
 
 int main() {
-    int a, b, c, d;
-    cin >> a >> b >> c >> d;
-    cout << ((a == c && b + d == a) || (a == d && b + c == a) ||
-             (b == c && a + d == b) || (b == d && a + c == b) ? "YES" : "NO") << endl;
+    int a, b, c;
+    cin >> a >> b >> c;
+
+    int arr[] = {a, b, c};
+    sort(arr, arr + 3);
+
+    if (arr[0] == arr[1]) {
+        cout <<  arr[2] ;
+    } else {
+        cout << arr[0] ;
+    }
+
     return 0;
 }
-

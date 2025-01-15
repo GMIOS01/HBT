@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cmath>
-#include <iomanip> 
+#include <cmath> 
 
 using namespace std;
 
@@ -9,6 +8,6 @@ int main() {
     cin >> xa >> ya;
     cin >> xb >> yb;
     double AB = sqrt(pow (xb - xa, 2) + pow (yb - ya, 2));
-    cout <<  fixed << setprecision (2) << AB ;
+    cout <<  fixed << setprecision ( 2) << AB ;
     return 0;
-} 
+}

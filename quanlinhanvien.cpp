@@ -1,47 +1,57 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <unordered_map>
 using namespace std;
 
 struct Employee {
     string name;
-    int birth_year, work_years;
-    double salary_coefficient = 2.34;
+    int yearOfBirth;
+    int yearsOfService;
+    double salaryCoefficient;
 };
 
 int main() {
     int n, q;
     cin >> n >> q;
     vector<Employee> employees(n);
-    unordered_map<string, int> name_count;
-    vector<int> work_years_count(105, 0);
+    unordered_map<string, int> nameCount;
+    int countC = 0;
 
     for (int i = 0; i < n; ++i) {
-        cin >> employees[i].name >> employees[i].birth_year >> employees[i].work_years >> employees[i].salary_coefficient;
-        name_count[employees[i].name]++;
-        work_years_count[employees[i].work_years]++;
+        cin >> employees[i].name >> employees[i].yearOfBirth >> employees[i].yearsOfService >> employees[i].salaryCoefficient;
+        nameCount[employees[i].name]++;
+        countC++;
     }
 
-    string query, name;
-    int x, year;
+    string query;
     for (int i = 0; i < q; ++i) {
         cin >> query;
         if (query == "C") {
-            cout << n << endl;
+            cout << countC << endl;
         } else if (query == "F") {
+            string name;
             cin >> name;
-            cout << name_count[name] << endl;
+            cout << nameCount[name] << endl;
         } else if (query == "S") {
+            int x;
             cin >> x;
-            cout << accumulate(work_years_count.begin() + x, work_years_count.end(), 0) << endl;
+            int countS = 0;
+            for (const auto& employee : employees) {
+                if (employee.yearsOfService >= x) {
+                    countS++;
+                }
+            }
+            cout << countS << endl;
         } else if (query == "I") {
+            string name;
+            int year;
             cin >> name >> year;
-            employees.push_back({name, year, 0});
-            name_count[name]++;
-            n++;
+            employees.push_back({name, year, 0, 2.34});
+            nameCount[name]++;
+            countC++;
         }
     }
 
     return 0;
 }
-

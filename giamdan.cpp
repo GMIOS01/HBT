@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -25,4 +26,4 @@ int main() {
     cout << max << " " << mid << " " << min << endl;
 
     return 0;
-} 
+}

@@ -1,41 +1,42 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-void inputArray(unsigned short a[], unsigned int length);
-void xoayMang(unsigned short a[], unsigned int length, unsigned int k);
-void ouputArray(unsigned short a[], unsigned int length);
+void rotateLeft(vector<int>& arr, int k) {
+    int n = arr.size();
+    k = k % n; 
+    vector<int> temp(n);
+    for (int i = 0; i < n; ++i) {
+        temp[i] = arr[(i + k) % n];
+    }
+    arr = temp;
+}
+
+int findSecondSmallest(vector<int>& arr) {
+    sort(arr.begin(), arr.end());
+    int smallest = arr[0];
+    for (int i = 1; i < arr.size(); ++i) {
+        if (arr[i] != smallest) {
+            return arr[i];
+        }
+    }
+    return -1;
+}
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    unsigned int n,k;
+    int n, k;
     cin >> n >> k;
-    unsigned short a[n];
-    inputArray(a, n);
-    xoayMang(a, n, k);
-    ouputArray(a, n);
+    vector<int> A(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> A[i];
+    }
+    rotateLeft(A, k);
+    
+    int second_smallest = findSecondSmallest(A);
+    cout << second_smallest ;
+
     return 0;
 }
 
-void inputArray(unsigned short a[], unsigned int length){
-	for (unsigned int i = 0; i < length; i++){
-		cin >> a[i];
-	}
-}
-
-void ouputArray(unsigned short a[], unsigned int length){
-    for (unsigned int i = 0; i < length; i++){
-		cout << a[i] << " ";
-	}
-}
-
-void xoayMang(unsigned short a[], unsigned int length, unsigned int k){
-    for (unsigned int i = 0; i < k; i++){
-        unsigned short temp = a[0];
-        for (unsigned int j = 0; j < length; j++){
-            a[j] = a[j + 1];
-        }
-        a[length - 1] = temp;
-    }
-}

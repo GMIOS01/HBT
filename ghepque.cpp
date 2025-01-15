@@ -4,12 +4,13 @@ using namespace std;
 
 int main() {
     int a, b, c;
+
     cin >> a >> b >> c;
 
-    if (a + b > c && b + c > a && c + a > b) {
-        cout << "YES";
+    if (a + b > c && b + c > a && a + c > b) {
+        cout << "YES" ;
     } else {
-        cout << "NO";
+        cout << "NO" ;
     }
 
     return 0;

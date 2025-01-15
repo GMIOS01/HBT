@@ -3,32 +3,38 @@
 
 using namespace std;
 
-int main() {
-    double a, b;
-    char phepTinh;
-
-    cin >> a >> phepTinh >> b;
-
-    switch (phepTinh) {
+double tinh_toan(double a, char phep_toan, double b) {
+    switch (phep_toan) {
         case '+':
-            cout << fixed << setprecision(3) << a + b << endl;
-            break;
+            return a + b;
         case '-':
-            cout << fixed << setprecision(3) << a - b << endl;
-            break;
+            return a - b;
         case '*':
-            cout << fixed << setprecision(3) << a * b << endl;
-            break;
+            return a * b;
         case '/':
             if (b == 0) {
-                cout << "Khong the chia cho 0" << endl;
+                cout << "ze";
+                return 0; 
             } else {
-                cout << fixed << setprecision(3) << a / b << endl;
+                return a / b;
             }
-            break;
         default:
-            cout << "Phep tinh khong hop le" << endl;
+            cout << "ze";
+            return 0;
+    }
+}
+
+int main() {
+    double a, b;
+    char phep_toan;
+
+    cin >> a >> phep_toan >> b;
+
+    double ket_qua = tinh_toan(a, phep_toan, b);
+
+    if (ket_qua != 0) { 
+        cout << fixed << setprecision(3) << ket_qua ;
     }
 
     return 0;
-} 
+}
